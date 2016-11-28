@@ -1,0 +1,8 @@
+{
+  "name": "ring-buffer",
+  "version": "1.0.0",
+  "description": "Small, fast, fixed-size, ES6-iterable ring buffer module",
+  "main": "index.js",
+  "author": "Trevor Behlman",
+  "license": "MIT"
+}
