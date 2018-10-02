@@ -13,14 +13,14 @@ function verify( buffer, elements ) {
 
 describe( "RingBuffer", () => {
 	it( "initializes", () => {
-		let buffer = new RingBuffer( 1 );
+		const buffer = new RingBuffer( 1 );
 		
 		expect( buffer.size ).toBe( 1 );
 		expect( buffer.length ).toBe( 0 );
 	} );
 	
 	it( "addLast and peekLast one element", () => {
-		let buffer = new RingBuffer( 1 );
+		const buffer = new RingBuffer( 1 );
 		
 		buffer.addLast( 1 );
 		
@@ -30,7 +30,7 @@ describe( "RingBuffer", () => {
 	} );
 	
 	it( "addLast two elements and peekLast", () => {
-		let buffer = new RingBuffer( 2 );
+		const buffer = new RingBuffer( 2 );
 		
 		buffer.addLast( 1 );
 		buffer.addLast( 2 );
@@ -41,7 +41,7 @@ describe( "RingBuffer", () => {
 	} );
 	
 	it( "addLast one element and removeLast one element", () => {
-		let buffer = new RingBuffer( 1 );
+		const buffer = new RingBuffer( 1 );
 		
 		buffer.addLast( 1 );
 		
@@ -50,7 +50,7 @@ describe( "RingBuffer", () => {
 	} );
 	
 	it( "addLast two elements and removeLast two elements", () => {
-		let buffer = new RingBuffer( 2 );
+		const buffer = new RingBuffer( 2 );
 		
 		buffer.addLast( 1 );
 		buffer.addLast( 2 );
@@ -62,7 +62,7 @@ describe( "RingBuffer", () => {
 	} );
 	
 	it( "does not overflow via addLast", () => {
-		let buffer = new RingBuffer( 1 );
+		const buffer = new RingBuffer( 1 );
 		
 		buffer.addLast( 1 );
 		buffer.addLast( 2 );
@@ -72,21 +72,21 @@ describe( "RingBuffer", () => {
 	} );
 	
 	it( "does not underflow via removeLast", () => {
-		let buffer = new RingBuffer( 1 );
+		const buffer = new RingBuffer( 1 );
 		
 		expect( buffer.removeLast() ).toBe( undefined );
 		expect( buffer.length ).toBe( 0 );
 	} );
 	
 	it( "returns undefined when peeking the last element of an empty buffer", () => {
-		let buffer = new RingBuffer( 1 );
+		const buffer = new RingBuffer( 1 );
 		
 		expect( buffer.peekLast() ).toBe( undefined );
 		expect( buffer.length ).toBe( 0 );
 	} );
 	
 	it( "addFirst one element and peekFirst", () => {
-		let buffer = new RingBuffer( 1 );
+		const buffer = new RingBuffer( 1 );
 		
 		buffer.addFirst( 1 );
 		
@@ -96,7 +96,7 @@ describe( "RingBuffer", () => {
 	} );
 	
 	it( "addFirst two elements and peekFirst", () => {
-		let buffer = new RingBuffer( 2 );
+		const buffer = new RingBuffer( 2 );
 		
 		buffer.addFirst( 1 );
 		buffer.addFirst( 2 );
@@ -107,7 +107,7 @@ describe( "RingBuffer", () => {
 	} );
 	
 	it( "addFirst one element and removeFirst one element", () => {
-		let buffer = new RingBuffer( 1 );
+		const buffer = new RingBuffer( 1 );
 		
 		buffer.addFirst( 1 );
 		
@@ -116,7 +116,7 @@ describe( "RingBuffer", () => {
 	} );
 	
 	it( "addFirst two elements and removeFirst two elements", () => {
-		let buffer = new RingBuffer( 2 );
+		const buffer = new RingBuffer( 2 );
 		
 		buffer.addFirst( 1 );
 		buffer.addFirst( 2 );
@@ -128,7 +128,7 @@ describe( "RingBuffer", () => {
 	} );
 	
 	it( "addLast two elements and peekFirst", () => {
-		let buffer = new RingBuffer( 2 );
+		const buffer = new RingBuffer( 2 );
 		
 		buffer.addLast( 1 );
 		buffer.addLast( 2 );
@@ -138,7 +138,7 @@ describe( "RingBuffer", () => {
 	} );
 	
 	it( "does not overflow via addFirst", () => {
-		let buffer = new RingBuffer( 1 );
+		const buffer = new RingBuffer( 1 );
 		
 		buffer.addFirst( 1 );
 		buffer.addFirst( 2 );
@@ -148,21 +148,21 @@ describe( "RingBuffer", () => {
 	} );
 	
 	it( "does not underflow via removeFirst", () => {
-		let buffer = new RingBuffer( 1 );
+		const buffer = new RingBuffer( 1 );
 		
 		expect( buffer.removeFirst() ).toBe( undefined );
 		expect( buffer.length ).toBe( 0 );
 	} );
 	
 	it( "returns undefined when peeking the first element of an empty buffer", () => {
-		let buffer = new RingBuffer( 1 );
+		const buffer = new RingBuffer( 1 );
 		
 		expect( buffer.peekFirst() ).toBe( undefined );
 		expect( buffer.length ).toBe( 0 );
 	} );
 	
 	it( "addLast and peekFirst one element", () => {
-		let buffer = new RingBuffer( 1 );
+		const buffer = new RingBuffer( 1 );
 		
 		buffer.addLast( 1 );
 		
@@ -171,7 +171,7 @@ describe( "RingBuffer", () => {
 	} );
 	
 	it( "addFirst and peekLast one element", () => {
-		let buffer = new RingBuffer( 1 );
+		const buffer = new RingBuffer( 1 );
 		
 		buffer.addFirst( 1 );
 		
@@ -180,7 +180,7 @@ describe( "RingBuffer", () => {
 	} );
 	
 	it( "wraps around via addLast and removeFirst", () => {
-		let buffer = new RingBuffer( 2 );
+		const buffer = new RingBuffer( 2 );
 		
 		buffer.addLast( 1 );
 		buffer.addLast( 2 );
@@ -192,7 +192,7 @@ describe( "RingBuffer", () => {
 	} );
 	
 	it( "wraps around via addFirst and removeLast", () => {
-		let buffer = new RingBuffer( 2 );
+		const buffer = new RingBuffer( 2 );
 		
 		buffer.addFirst( 1 );
 		buffer.addFirst( 2 );
@@ -208,13 +208,13 @@ describe( "RingBuffer", () => {
 	} );
 	
 	it( "enumerates empty list", () => {
-		let buffer = new RingBuffer( 1 );
+		const buffer = new RingBuffer( 1 );
 		
 		verify( buffer, [] );
 	} );
 	
 	it( "enumerates list of one", () => {
-		let buffer = new RingBuffer( 1 );
+		const buffer = new RingBuffer( 1 );
 		
 		buffer.addLast( 1 );
 		
@@ -222,7 +222,7 @@ describe( "RingBuffer", () => {
 	} );
 	
 	it( "enumerates list of two", () => {
-		let buffer = new RingBuffer( 2 );
+		const buffer = new RingBuffer( 2 );
 		
 		buffer.addLast( 1 );
 		buffer.addLast( 2 );
@@ -231,7 +231,7 @@ describe( "RingBuffer", () => {
 	} );
 	
 	it( "enumerates list of two not starting at 0", () => {
-		let buffer = new RingBuffer( 3 );
+		const buffer = new RingBuffer( 3 );
 		
 		buffer.addLast( 1 );
 		buffer.addLast( 2 );
@@ -242,7 +242,7 @@ describe( "RingBuffer", () => {
 	} );
 	
 	it( "enumerates wrapped list of two", () => {
-		let buffer = new RingBuffer( 2 );
+		const buffer = new RingBuffer( 2 );
 		
 		buffer.addLast( 1 );
 		buffer.addLast( 2 );
@@ -253,7 +253,7 @@ describe( "RingBuffer", () => {
 	} );
 	
 	it( "enumerates its own iterator", () => {
-		let buffer = new RingBuffer( 2 );
+		const buffer = new RingBuffer( 2 );
 		
 		buffer.addLast( 1 );
 		buffer.addLast( 2 );

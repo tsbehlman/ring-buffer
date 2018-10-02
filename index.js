@@ -14,7 +14,7 @@ class RingBufferIterator {
 	}
 	
 	getNext() {
-		let value = this.buffer.buffer[ this.index ];
+		const value = this.buffer.buffer[ this.index ];
 		
 		if( this.index === this.buffer.size - 1 ) {
 			this.index = 0;
@@ -115,7 +115,7 @@ class RingBuffer {
 			return undefined;
 		}
 		
-		let element = this.buffer[ this.head ];
+		const element = this.buffer[ this.head ];
 		
 		if( this.head === this.size - 1 ) {
 			this.head = 0;
