@@ -6,13 +6,10 @@ class RingBufferIterator {
 	}
 	
 	next() {
-		let hasNext = this.hasNext();
+		const isDone = this.isDone();
 		return {
-			value: hasNext ? this.getNext() : undefined,
-			next: () => {
-				return this.next();
-			},
-			done: !hasNext
+			value: isDone ? undefined : this.getNext(),
+			done: isDone
 		};
 	}
 	
@@ -31,8 +28,12 @@ class RingBufferIterator {
 		return value;
 	}
 	
-	hasNext() {
-		return this.length < this.buffer.length;
+	isDone() {
+		return this.length === this.buffer.length;
+	}
+	
+	[ Symbol.iterator ]() {
+		return this;
 	}
 }
 
@@ -137,7 +138,7 @@ class RingBuffer {
 		}
 	}
 	
-	[Symbol.iterator]() {
+	[ Symbol.iterator ]() {
 		return new RingBufferIterator( this );
 	}
 }

@@ -1,11 +1,12 @@
 let RingBuffer = require( "../index" );
 
 function verify( buffer, elements ) {
-	let iteratorResult = buffer[Symbol.iterator]().next();
+	const iterator = buffer[ Symbol.iterator ]();
+	let iteratorResult = iterator.next();
 	for( let element of elements ) {
 		expect( iteratorResult.value ).toBe( element );
 		expect( iteratorResult.done ).toBe( false );
-		iteratorResult = iteratorResult.next();
+		iteratorResult = iterator.next();
 	}
 	expect( iteratorResult.done ).toBe( true );
 }
@@ -202,8 +203,8 @@ describe( "RingBuffer", () => {
 		expect( buffer.removeLast() ).toBe( 3 );
 	} );
 	
-	it( "implements iterator method", () => {
-		expect( RingBuffer.prototype[Symbol.iterator] instanceof Function ).toBe( true );
+	it( "implements iterator protocol", () => {
+		expect( RingBuffer.prototype[ Symbol.iterator ] instanceof Function ).toBe( true );
 	} );
 	
 	it( "enumerates empty list", () => {
@@ -249,5 +250,14 @@ describe( "RingBuffer", () => {
 		buffer.addLast( 3 );
 		
 		verify( buffer, [ 2, 3 ] );
+	} );
+	
+	it( "enumerates its own iterator", () => {
+		let buffer = new RingBuffer( 2 );
+		
+		buffer.addLast( 1 );
+		buffer.addLast( 2 );
+		
+		verify( buffer[ Symbol.iterator ](), [ 1, 2 ] );
 	} );
 } );
