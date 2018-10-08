@@ -260,4 +260,34 @@ describe( "RingBuffer", () => {
 		
 		verify( buffer[ Symbol.iterator ](), [ 1, 2 ] );
 	} );
+	
+	it( "enumerates a complete slice", () => {
+		const buffer = new RingBuffer( 2 );
+		
+		buffer.addLast( 1 );
+		buffer.addLast( 2 );
+		
+		verify( buffer.slice( 0, 2 ), [ 1, 2 ] );
+	} );
+	
+	it( "enumerates a partial slice", () => {
+		const buffer = new RingBuffer( 2 );
+		
+		buffer.addLast( 1 );
+		buffer.addLast( 2 );
+		
+		verify( buffer.slice( 0, 1 ), [ 1 ] );
+	} );
+	
+	it( "enumerates a partial wrapping slice", () => {
+		const buffer = new RingBuffer( 3 );
+		
+		buffer.addLast( 1 );
+		buffer.addLast( 2 );
+		buffer.addLast( 3 );
+		buffer.removeFirst();
+		buffer.addLast( 4 );
+		
+		verify( buffer.slice( 1, 3 ), [ 3, 4 ] );
+	} );
 } );

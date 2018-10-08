@@ -1,8 +1,10 @@
 class RingBufferIterator {
-	constructor( buffer ) {
+	constructor( buffer, start, end ) {
 		this.buffer = buffer;
-		this.index = this.buffer.head;
+		this.index = ( buffer.head + start ) % buffer.size;
 		this.length = 0;
+		this.start = start;
+		this.size = end - start;
 	}
 	
 	next() {
@@ -29,7 +31,7 @@ class RingBufferIterator {
 	}
 	
 	isDone() {
-		return this.length === this.buffer.length;
+		return this.length >= this.size;
 	}
 	
 	[ Symbol.iterator ]() {
@@ -139,7 +141,11 @@ class RingBuffer {
 	}
 	
 	[ Symbol.iterator ]() {
-		return new RingBufferIterator( this );
+		return new RingBufferIterator( this, 0, this.length );
+	}
+	
+	slice( start, end ) {
+		return new RingBufferIterator( this, start, end );
 	}
 }
 
